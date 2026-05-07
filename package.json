@@ -1,0 +1,30 @@
+{
+  "name": "orangehrm_playwright_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:chrome": "playwright test --project=chrome",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report",
+    "test:example": "playwright test tests/example.spec.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NhatHoang2003/orangeHRM_playwright_test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/NhatHoang2003/orangeHRM_playwright_test/issues"
+  },
+  "homepage": "https://github.com/NhatHoang2003/orangeHRM_playwright_test#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0"
+  }
+}
