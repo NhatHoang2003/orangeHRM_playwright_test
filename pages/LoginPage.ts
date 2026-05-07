@@ -2,9 +2,16 @@ import {Page, Locator} from '@playwright/test';
 
 export class LoginPage {
     readonly page: Page;
+
     readonly usernameInput: Locator;
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
+    readonly loginErrorMessage: Locator;
+    readonly username_errorMessage: Locator;
+    readonly password_errorMessage: Locator;
+
+    readonly dashboardURL: string = 'https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index';
+    readonly loginURL: string = 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login';
 
     constructor(page: Page) {
         this.page = page;
@@ -12,10 +19,13 @@ export class LoginPage {
         this.usernameInput = page.locator('input[name="username"]');
         this.passwordInput = page.locator('input[name="password"]');
         this.loginButton = page.locator('button[type="submit"]');
+        this.loginErrorMessage = page.locator('.oxd-alert-content--error .oxd-alert-content-text');
+        this.username_errorMessage = page.locator('//div[.//label[text()="Username"]]//span[text()="Required"]');
+        this.password_errorMessage = page.locator('//div[.//label[text()="Password"]]//span[text()="Required"]');
     }
 
     async gotoLoginPage() {
-        await this.page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+        await this.page.goto(this.loginURL);
     }
 
     async login(username: string, password: string) {
@@ -24,9 +34,5 @@ export class LoginPage {
         await this.passwordInput.fill(password);
 
         await this.loginButton.click();
-    }
-
-    async waitForDasboard() {
-        await this.page.waitForURL('https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index');
     }
 }
