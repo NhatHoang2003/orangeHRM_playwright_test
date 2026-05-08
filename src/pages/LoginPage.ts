@@ -11,7 +11,7 @@ export class LoginPage {
     readonly password_errorMessage: Locator;
 
     readonly dashboardURL: string = 'https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index';
-    readonly loginURL: string = 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login';
+    readonly loginURL: string = '/web/index.php/auth/login'
 
     constructor(page: Page) {
         this.page = page;
@@ -28,12 +28,12 @@ export class LoginPage {
         this.password_errorMessage = page
             .locator('.oxd-input-group')
             .filter({ has: page.locator('input[type="password"]') })
-            .locator('.oxd-input-field-error-message');    
+            .locator('.oxd-input-field-error-message');
     }
 
     async gotoLoginPage() {
-        await this.page.goto(this.loginURL, { waitUntil: 'load'});
-    }
+        await this.page.goto(this.loginURL,{ waitUntil: 'load'});
+    }   
 
     async login(username: string, password: string) {
         

@@ -6,7 +6,10 @@ test('should login successfully', async ({ page }) => {
 
     await loginPage.gotoLoginPage();
 
-    await loginPage.login('Admin', 'admin123');
+    await loginPage.login(
+        process.env.ADMIN_USERNAME!,
+        process.env.ADMIN_PASSWORD!
+    );
 
     await expect(page).toHaveURL(loginPage.dashboardURL);
 });

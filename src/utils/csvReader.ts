@@ -1,6 +1,5 @@
-import { readFile } from 'fs/promises';
 import { parse } from 'csv-parse/sync';
-import  path, { join } from 'path';
+import { join } from 'path';
 import { readFileSync } from 'fs';
 
 export interface loginData {
@@ -12,9 +11,12 @@ export interface loginData {
 
 export const readLoginDataFromCSV = () : loginData[] => {
 
-    const csvFilePath = join(__dirname, '..', 'data', 'login-data.csv'); // Adjust the path to your CSV file as needed
 
-    const fileContent = readFileSync(csvFilePath, 'utf-8'); // Read the CSV file content
+    const csvFilePath = join(__dirname, '..', '..', 'data', 'login-data.csv'); // Adjust the path to your CSV file as needed
+
+    const fileContent = readFileSync(csvFilePath, 'utf8'); // Read the CSV file content
+
+    console.log(csvFilePath);
 
     const data = parse(fileContent, {
         columns: true, // Use the first row as column names

@@ -10,7 +10,8 @@
     "test:debug": "playwright test --debug",
     "test:report": "playwright show-report",
     "test:login": "playwright test tests/logintest.spec.ts --project=chromium --headed",
-    "test:login-data": "playwright test tests/login-data.spec.ts --project=chromium --headed"
+    "test:login-data": "playwright test tests/login-data.spec.ts --project=chromium --headed",
+    "test:home": "playwright test tests/hometest.spec.ts --project=chromium --headed"
   },
   "repository": {
     "type": "git",
