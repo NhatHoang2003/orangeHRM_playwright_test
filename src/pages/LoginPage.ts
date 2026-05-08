@@ -20,12 +20,19 @@ export class LoginPage {
         this.passwordInput = page.locator('input[name="password"]');
         this.loginButton = page.locator('button[type="submit"]');
         this.loginErrorMessage = page.locator('.oxd-alert-content--error .oxd-alert-content-text');
-        this.username_errorMessage = page.locator('//div[.//label[text()="Username"]]//span[text()="Required"]');
-        this.password_errorMessage = page.locator('//div[.//label[text()="Password"]]//span[text()="Required"]');
+        this.username_errorMessage = page
+            .locator('.oxd-input-group')
+            .filter({ has: page.locator('input[name="username"]') })
+            .locator('.oxd-input-field-error-message');
+
+        this.password_errorMessage = page
+            .locator('.oxd-input-group')
+            .filter({ has: page.locator('input[type="password"]') })
+            .locator('.oxd-input-field-error-message');    
     }
 
     async gotoLoginPage() {
-        await this.page.goto(this.loginURL);
+        await this.page.goto(this.loginURL, { waitUntil: 'load'});
     }
 
     async login(username: string, password: string) {

@@ -6,4 +6,4 @@ wronguser,admin123,fail,Invalid username should show error
 wronguser,wrongpassword,fail,Both username and password incorrect
 ,admin123,empty,Empty username should not allow login
 Admin,,empty,Empty password should not allow login
-, ,empty,Empty credentials should show validation error
+,,empty,Empty credentials should show validation error
