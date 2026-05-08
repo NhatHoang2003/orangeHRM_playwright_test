@@ -32,7 +32,20 @@ export class HomePage {
                 menuNames.push(name);
             };
         }
-        
+
         return menuNames;
+    };
+
+    async clickMenuMyInfo(): Promise<void> {
+        const count = await this.sidebarMenuNames.count();
+
+        for (let i = 0; i < count; i++) {
+            const name = await this.sidebarMenuNames.nth(i).textContent();
+
+            if (name === 'My Info') {
+                await this.sidebarMenuNames.nth(i).locator('xpath=./ancestor::a').click();
+                return;
+            };
+        };
     };
 };
