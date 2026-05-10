@@ -54,7 +54,7 @@ export class HomePage {
     await highlightAndScreenshoot(
         this.page,
         myInfoMenu,
-        'homeTest',
+        '',
         'click_My_Info'
     );
 

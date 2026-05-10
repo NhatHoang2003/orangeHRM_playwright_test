@@ -13,6 +13,9 @@
     "test:login-data": "playwright test tests/login-data.spec.ts --project=chromium --headed",
     "test:home": "playwright test tests/hometest.spec.ts --project=chromium --headed",
     "test:my-info": "playwright test tests/myinfotest.spec.ts --project=chromium --headed",
+    
+
+    "test:login-mobile": "playwright test tests/mobile.spec.ts --project=chromium --headed",
 
     "check:list": "playwright test --list"
   },
