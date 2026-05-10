@@ -1,5 +1,7 @@
 import {Page, Locator} from '@playwright/test'
 import { sideBarMenu } from '../constants/sidebarMenu.eum';
+import { highlightAndScreenshoot } from '../utils/screenshot';
+import { MyInfoPage } from './myInfoPage';
 
 export class HomePage {
     readonly page: Page;
@@ -44,22 +46,18 @@ export class HomePage {
 
     // *--- MY INFO SESSION ---* // 
     async clickMenuMyInfo(): Promise<void> {
-        // const count = await this.sidebarMenuNames.count();
 
-        // for (let i = 0; i < count; i++) {
-        //     const name = await this.sidebarMenuNames.nth(i).textContent();
+    const myInfoMenu = this.page.getByRole('link', {
+        name: sideBarMenu.MY_INFO
+    });
 
-        //     if (name === sideBarMenu.MY_INFO) {
-        //         await this.sidebarMenuNames.nth(i).locator('xpath=./ancestor::a').click();
-        //         return;
-        //     };
-        // };
+    await highlightAndScreenshoot(
+        this.page,
+        myInfoMenu,
+        'homeTest',
+        'click_My_Info'
+    );
 
-
-        await this.page.getByRole('link', {
-            name: sideBarMenu.MY_INFO
-        }).click();
-    };
-
-
+    await myInfoMenu.click();
+}
 };

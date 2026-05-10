@@ -26,7 +26,11 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 
   // /* Timeout to wait for actions */
-  // timeout: Number(process.env.APP_TIMEOUT),
+  timeout: Number(process.env.APP_TIMEOUT),
+  
+  expect: {
+    timeout: Number(process.env.APP_TIMEOUT_EXPECTED),
+  },
 
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
@@ -34,10 +38,18 @@ export default defineConfig({
     
     // /* Browser evironments to testing */
     // browserName: process.env.APP_BROWSER as 'chromium',
-    
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    
+    // Timeout for actions: click, fill, goto,...
+    actionTimeout: Number(process.env.APP_TIMEOUT_ACTION),
+    
+    // Timeout for reload page
+    navigationTimeout: Number(process.env.APP_TIMEOUT_NAVIGATE),
+
+    // Saving error image when tests fail
+    screenshot: 'only-on-failure',
   },
 
   /* Configure projects for major browsers */

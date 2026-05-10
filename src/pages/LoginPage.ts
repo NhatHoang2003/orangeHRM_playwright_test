@@ -1,4 +1,5 @@
 import {Page, Locator} from '@playwright/test';
+import { highlightAndScreenshoot } from '../utils/screenshot';
 
 export class LoginPage {
     readonly page: Page;
@@ -38,8 +39,12 @@ export class LoginPage {
     async login(username: string, password: string) {
         
         await this.usernameInput.fill(username);
-        await this.passwordInput.fill(password);
+        await highlightAndScreenshoot(this.page, this.usernameInput, 'loginTest', 'fill_username');
 
+        await this.passwordInput.fill(password);
+        await highlightAndScreenshoot(this.page, this.passwordInput, 'loginTest', 'fill_password');
+    
+        await highlightAndScreenshoot(this.page, this.loginButton, 'loginTest', 'click_loginButton');
         await this.loginButton.click();
-    }
-}
+    };
+};
