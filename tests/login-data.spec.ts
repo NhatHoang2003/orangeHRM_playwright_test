@@ -1,7 +1,7 @@
 import {expect, test} from '@playwright/test';
 import { loginData, readLoginDataFromCSV } from '../src/utils/csvReader';
 import { LoginPage } from '../src/pages/LoginPage';
-import { expectedResult } from '../src/utils/loginExpected.enum';
+import { expectedResult } from '../src/constants/loginExpected.enum';
 
 const testData: loginData[] = readLoginDataFromCSV();
 

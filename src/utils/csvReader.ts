@@ -12,7 +12,7 @@ export interface loginData {
 export const readLoginDataFromCSV = () : loginData[] => {
 
 
-    const csvFilePath = join(__dirname, '..', '..', 'data', 'login-data.csv'); // Adjust the path to your CSV file as needed
+    const csvFilePath = join(__dirname, '..', '..', 'data', 'csv', 'login-data.csv'); // Adjust the path to your CSV file as needed
 
     const fileContent = readFileSync(csvFilePath, 'utf8'); // Read the CSV file content
 

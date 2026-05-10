@@ -1,4 +1,5 @@
 import {Page, Locator} from '@playwright/test'
+import { sideBarMenu } from '../constants/sidebarMenu.eum';
 
 export class HomePage {
     readonly page: Page;
@@ -36,16 +37,29 @@ export class HomePage {
         return menuNames;
     };
 
+
+    // *--- ADMIN SESSION ---* // 
+
+
+
+    // *--- MY INFO SESSION ---* // 
     async clickMenuMyInfo(): Promise<void> {
-        const count = await this.sidebarMenuNames.count();
+        // const count = await this.sidebarMenuNames.count();
 
-        for (let i = 0; i < count; i++) {
-            const name = await this.sidebarMenuNames.nth(i).textContent();
+        // for (let i = 0; i < count; i++) {
+        //     const name = await this.sidebarMenuNames.nth(i).textContent();
 
-            if (name === 'My Info') {
-                await this.sidebarMenuNames.nth(i).locator('xpath=./ancestor::a').click();
-                return;
-            };
-        };
+        //     if (name === sideBarMenu.MY_INFO) {
+        //         await this.sidebarMenuNames.nth(i).locator('xpath=./ancestor::a').click();
+        //         return;
+        //     };
+        // };
+
+
+        await this.page.getByRole('link', {
+            name: sideBarMenu.MY_INFO
+        }).click();
     };
+
+
 };

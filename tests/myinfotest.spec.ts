@@ -19,6 +19,10 @@ test.describe('My Info Tests', () => {
 
         await expect(page).toHaveURL(loginPage.dashboardURL);
 
+        // Wait for sidebarMenu to load all elements 
+        // due to Page might loaded slower than as expected
+        await homePage.sidebarMenuItems.first().waitFor({timeout: 1000});
+
         await homePage.clickMenuMyInfo();
 
         await myInfoPage.avatarWrapper.waitFor({timeout: 5000});
