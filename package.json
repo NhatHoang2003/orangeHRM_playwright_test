@@ -13,12 +13,8 @@
     "test:login-data": "playwright test tests/login-data-test.spec.ts --project=chromium --headed",
     "test:home": "playwright test tests/home-test.spec.ts --project=chromium --headed",
     "test:my-info": "playwright test tests/my-info-test.spec.ts --project=chromium --headed",
-    
-
     "test:login-mobile": "playwright test tests/mobile-test.spec.ts --project=chromium --headed",
-
     "test:form": "playwright test tests/form-test.spec.ts --project=chromium --headed",
-
     "check:list": "playwright test --list"
   },
   "repository": {
@@ -36,6 +32,7 @@
   "devDependencies": {
     "@playwright/test": "^1.59.1",
     "@types/node": "^25.6.0",
+    "allure-playwright": "^3.8.0",
     "dotenv": "^17.4.2"
   },
   "dependencies": {

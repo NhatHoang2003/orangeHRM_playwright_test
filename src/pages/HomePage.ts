@@ -30,7 +30,7 @@ export class HomePage {
             
             const name = await this.sidebarMenuItems.nth(i).textContent();
 
-            // Because TS suspect variable is null value => that why have to add if condition
+            // Because TS suspects variable is null value => that why have to add if condition
             if (name) {
                 menuNames.push(name);
             };
@@ -47,17 +47,17 @@ export class HomePage {
     // *--- MY INFO SESSION ---* // 
     async clickMenuMyInfo(): Promise<void> {
 
-    const myInfoMenu = this.page.getByRole('link', {
-        name: sideBarMenu.MY_INFO
-    });
+        const myInfoMenu = this.page.getByRole('link', {
+            name: sideBarMenu.MY_INFO
+        });
 
-    await highlightAndScreenshot(
-        this.page,
-        myInfoMenu,
-        '',
-        'click_My_Info'
-    );
+        await highlightAndScreenshot(
+            this.page,
+            myInfoMenu,
+            '',
+            'click_My_Info'
+        );
 
-    await myInfoMenu.click();
-}
+        await myInfoMenu.click();
+    }
 };
