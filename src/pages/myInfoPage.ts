@@ -1,6 +1,6 @@
 import {Page, Locator} from '@playwright/test'
 import { join } from 'node:path';
-import { highlightAndScreenshoot } from '../utils/screenshot';
+import { highlightAndScreenshot } from '../utils/screenshot';
 
 export class MyInfoPage {
     readonly page: Page;
@@ -20,19 +20,16 @@ export class MyInfoPage {
     async upLoadAvatar() : Promise<void> {
 
         await this.avatarWrapper.waitFor({ state: 'visible', timeout: 5000});
-        await highlightAndScreenshoot(this.page, this.avatarWrapper, 'myInfoTest', 'click_avatar');
+        await highlightAndScreenshot(this.page, this.avatarWrapper, 'myInfoTest', 'click_avatar');
         await this.avatarWrapper.click();
-        await this.page.waitForTimeout(2000);
         
         await this.uploadBtn.waitFor({ state: 'visible', timeout: 5000});
-        await highlightAndScreenshoot(this.page, this.uploadBtn, 'myInfoTest', 'click_uploadBtn');
+        await highlightAndScreenshot(this.page, this.uploadBtn, 'myInfoTest', 'click_uploadBtn');
         await this.uploadBtn.click();
-        await this.page.waitForTimeout(2000);
 
         await this.fileInput.waitFor({ state: 'attached', timeout: 5000});
         const filePath = join(__dirname, '..', '..', 'data', 'picture', 'image_1.jpg');
         await this.fileInput.setInputFiles(filePath);
-        await highlightAndScreenshoot(this.page, this.fileInput, 'myInfoTest', 'upload_image');
-        await this.page.waitForTimeout(3000);
+        await highlightAndScreenshot(this.page, this.fileInput, 'myInfoTest', 'upload_image');
     };
 };

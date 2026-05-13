@@ -1,6 +1,6 @@
 import {Page, Locator} from '@playwright/test'
 import { sideBarMenu } from '../constants/sidebarMenu.eum';
-import { highlightAndScreenshoot } from '../utils/screenshot';
+import { highlightAndScreenshot } from '../utils/screenshot';
 import { MyInfoPage } from './myInfoPage';
 
 export class HomePage {
@@ -51,7 +51,7 @@ export class HomePage {
         name: sideBarMenu.MY_INFO
     });
 
-    await highlightAndScreenshoot(
+    await highlightAndScreenshot(
         this.page,
         myInfoMenu,
         '',

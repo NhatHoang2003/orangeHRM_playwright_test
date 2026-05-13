@@ -1,28 +1,55 @@
-import {Locator, Page} from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
 import { mkdirSync } from 'fs';
 import { join } from 'path';
 
-export async function highlightAndScreenshoot(
+export async function highlightAndScreenshot(
     page: Page,
     locator: Locator,
-    testName: String,
-    stepName: String,
-) : Promise<void>{
-    
+    testName: string,
+    stepName: string,
+): Promise<void> {
+
     const folderName = testName.toLowerCase();
 
     const screenshotDir = join(__dirname, '..', '..', 'screenshot', folderName);
 
-    mkdirSync(screenshotDir, { recursive: true});
+    mkdirSync(screenshotDir, { recursive: true });
 
-    await locator.evaluate((elm) => {
-        (elm as HTMLElement).style.border = '2px solid red',
-        (elm as HTMLElement).style.backgroundColor = 'yellow',
-        (elm as HTMLElement).style.color = 'black'
+    await page.evaluate(() => {
+
+        document.querySelectorAll('*').forEach((el) => {
+
+            const element = el as HTMLElement;
+
+            if (element.dataset.highlighted === 'true') {
+
+                element.style.border = '';
+                element.style.backgroundColor = '';
+                element.style.color = '';
+
+                delete element.dataset.highlighted;
+            }
+        });
     });
 
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(100);
+
+    await locator.scrollIntoViewIfNeeded();
+
+    await locator.evaluate((el) => {
+
+        const element = el as HTMLElement;
+
+        element.dataset.highlighted = 'true';
+
+        element.style.border = '2px solid red';
+        element.style.backgroundColor = 'yellow';
+        element.style.color = 'black';
+    });
+
+    await page.waitForTimeout(300);
 
     const filePath = join(screenshotDir, `${stepName}.png`);
-    await page.screenshot({ path: filePath, fullPage: true});
-};
+
+    await page.screenshot({path: filePath, fullPage: false, animations: 'disabled'});
+}
